@@ -176,6 +176,51 @@ footer {
     text-align: center;
 }
 
+
+/* Contact page layout */
+.contact-page {
+    align-items: stretch;
+}
+
+.contact-page > section {
+    flex: 1 1 45%;
+}
+
+.contact-page > section:first-child {
+    flex-basis: 100%;
+}
+
+/* Reduce extra spacing inside the contact form */
+.contact-page form br {
+    display: none;
+}
+
+.contact-page fieldset {
+    margin-bottom: 1rem;
+}
+
+.contact-page label {
+    margin-top: 0.5rem;
+}
+
+.contact-page input,
+.contact-page select,
+.contact-page textarea {
+    margin-bottom: 0.5rem;
+}
+
+/* Keep form controls from becoming unnecessarily wide */
+.contact-page input,
+.contact-page select,
+.contact-page textarea {
+    max-width: 500px;
+}
+
+/* Balance the location section with the form */
+.contact-page > section:last-child {
+    min-height: 300px;
+}
+
 @media (min-width: 768px) {
     header {
         padding: 2rem;
