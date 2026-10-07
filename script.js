@@ -95,9 +95,10 @@ function validateContactForm() {
     const form = document.querySelector("form");
     const name = document.getElementById("name");
     const email = document.getElementById("email");
+    const pickupDate = document.getElementById("pickup-date");
     const itemDetails = document.getElementById("item-details");
 
-    if (!form || !name || !email || !itemDetails) {
+    if (!form || !name || !email || !pickupDate || !itemDetails) {
         return;
     }
 
@@ -118,6 +119,11 @@ function validateContactForm() {
             isValid = false;
         }
 
+        if (pickupDate.value === "") {
+            showError(pickupDate, "Please select a pickup date.");
+            isValid = false;
+        }
+
         if (itemDetails.value.trim().length < 10) {
             showError(
                 itemDetails,
@@ -131,6 +137,7 @@ function validateContactForm() {
         }
     });
 }
+
 // Display an error message near a form field
 function showError(field, message) {
     const error = document.createElement("p");
