@@ -9,8 +9,8 @@ const products = [
         description: "Fresh pastries prepared for our customers."
     },
     {
-        name: "Cookies",
-        description: "Crispy and fresh cookies from North Star Bakery."
+        name: "Cakes",
+        description: "Delicious, sweet cakes – made to order"
     }
 ];
 
