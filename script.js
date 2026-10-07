@@ -1,5 +1,4 @@
-
-// Product data used by the favorite feature
+// Product data
 const products = [
     {
         name: "Breads",
@@ -15,10 +14,10 @@ const products = [
     }
 ];
 
-// Stores the products selected by the user
+// Stores user's favorite products
 let favorites = [];
 
-// Load saved favorites from localStorage
+// Load saved favorites
 function loadFavorites() {
     const savedFavorites = localStorage.getItem("favorites");
 
@@ -29,12 +28,12 @@ function loadFavorites() {
     displayFavorites();
 }
 
-// Save favorites to localStorage
+// Save favorites
 function saveFavorites() {
     localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
-// Add a product to the favorites list
+// Add a product to favorites
 function addFavorite(productName) {
     if (!favorites.includes(productName)) {
         favorites.push(productName);
@@ -43,7 +42,7 @@ function addFavorite(productName) {
     }
 }
 
-// Display the current favorites on the page
+// Display favorite products
 function displayFavorites() {
     const favoriteList = document.getElementById("favorite-list");
     const favoriteMessage = document.getElementById("favorite-message");
@@ -55,7 +54,8 @@ function displayFavorites() {
     favoriteList.innerHTML = "";
 
     if (favorites.length === 0) {
-        favoriteMessage.textContent = "You have not added any favorites yet.";
+        favoriteMessage.textContent =
+            "You have not added any favorites yet.";
         return;
     }
 
@@ -68,7 +68,7 @@ function displayFavorites() {
     });
 }
 
-// Set up the favorite buttons
+// Set up favorite buttons
 function setupFavoriteButtons() {
     const buttons = document.querySelectorAll(".favorite-button");
 
@@ -83,22 +83,30 @@ function setupFavoriteButtons() {
     });
 }
 
-// Run the favorite feature when the page loads
-document.addEventListener("DOMContentLoaded", function () {
-    loadFavorites();
-    setupFavoriteButtons();
-    validateContactForm();
-});
+// Display a validation error
+function showError(field, message) {
+    const error = document.createElement("p");
+
+    error.className = "validation-error";
+    error.textContent = message;
+
+    field.insertAdjacentElement("afterend", error);
+}
+
+// Remove previous validation errors
+function clearValidationMessages() {
+    const errors = document.querySelectorAll(".validation-error");
+
+    errors.forEach(function (error) {
+        error.remove();
+    });
+}
 
 // Validate the contact form
 function validateContactForm() {
     const form = document.querySelector("form");
-    const name = document.getElementById("name");
-    const email = document.getElementById("email");
-    const pickupDate = document.getElementById("pickup-date");
-    const itemDetails = document.getElementById("item-details");
 
-    if (!form || !name || !email || !pickupDate || !itemDetails) {
+    if (!form) {
         return;
     }
 
@@ -106,6 +114,11 @@ function validateContactForm() {
         let isValid = true;
 
         clearValidationMessages();
+
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const pickupDate = document.getElementById("pickup-date");
+        const itemDetails = document.getElementById("item-details");
 
         if (name.value.trim() === "") {
             showError(name, "Please enter your name.");
@@ -138,31 +151,11 @@ function validateContactForm() {
     });
 }
 
-// Display an error message near a form field
-function showError(field, message) {
-    const error = document.createElement("p");
-
-    error.className = "validation-error";
-    error.textContent = message;
-
-    field.insertAdjacentElement("afterend", error);
-}
-
-// Remove previous validation messages
-function clearValidationMessages() {
-    const errors = document.querySelectorAll(".validation-error");
-
-    errors.forEach(function (error) {
-        error.remove();
-    });
-}
-
-// Set up form validation when the page loads
+// Run JavaScript after the page loads
 document.addEventListener("DOMContentLoaded", function () {
     loadFavorites();
     setupFavoriteButtons();
     validateContactForm();
 });
-
 
 
