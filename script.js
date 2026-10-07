@@ -145,9 +145,13 @@ function validateContactForm() {
             isValid = false;
         }
 
-        if (!isValid) {
+      if (!isValid) {
+           event.preventDefault();
+         } else {
             event.preventDefault();
-        }
+            alert("Your request has been submitted successfully.");
+  }
+
     });
 }
 
